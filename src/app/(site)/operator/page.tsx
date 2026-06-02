@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "motion/react";
 import {
@@ -111,7 +112,7 @@ function Sidebar({ active, setActive }: { active: OperatorTab; setActive: (t: Op
     <aside className="hidden lg:flex flex-col w-60 shrink-0 border-r" style={{ background: C.surface, borderColor: C.border }}>
       <div className="flex items-center gap-3 px-5 py-5 border-b" style={{ borderColor: C.border }}>
         <div className="w-10 h-10 rounded-[14px] overflow-hidden gradient-primary flex items-center justify-center flex-shrink-0" style={{ boxShadow: "0 4px 16px rgba(229,57,53,0.4)" }}>
-          <img src="/logo.png" alt="TransFlex" width={28} height={28} style={{ objectFit: "contain" }} />
+          <Image src="/logo.png" alt="TransFlex" width={28} height={28} style={{ objectFit: "contain" }} />
         </div>
         <div>
           <p className="font-extrabold text-sm" style={{ color: C.text }}>TransFlex</p>
@@ -149,7 +150,7 @@ function TopBar({ active, setActive }: { active: OperatorTab; setActive: (t: Ope
     <header className="flex items-center gap-3 px-4 py-3 border-b shrink-0" style={{ background: C.surface, borderColor: C.border }}>
       {/* Mobile logo */}
       <div className="lg:hidden w-8 h-8 rounded-xl gradient-primary flex items-center justify-center shrink-0">
-        <img src="/logo.png" alt="TransFlex" width={22} height={22} style={{ objectFit: "contain" }} />
+        <Image src="/logo.png" alt="TransFlex" width={22} height={22} style={{ objectFit: "contain" }} />
       </div>
       <div className="lg:hidden flex gap-1 overflow-x-auto flex-1">
         {NAV.map(({ id, icon: Icon }) => (

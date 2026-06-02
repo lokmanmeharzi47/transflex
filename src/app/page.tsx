@@ -6,10 +6,8 @@ import { Capacitor } from '@capacitor/core';
 
 export default function Home() {
   const router = useRouter();
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     if (Capacitor.isNativePlatform()) {
       router.replace('/splash');
     } else {
@@ -17,6 +15,5 @@ export default function Home() {
     }
   }, [router]);
 
-  if (!mounted) return null;
   return null;
 }
