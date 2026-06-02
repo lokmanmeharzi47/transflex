@@ -1,0 +1,6 @@
+{
+  "name": "TransFlex",
+  "description": "Smart Shared Mobility Platform",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": []
+}
