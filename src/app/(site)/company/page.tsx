@@ -447,6 +447,52 @@ function LiveTab() {
 
 // ─── Employees Tab ────────────────────────────────────────────────────────────
 
+function AddEmployeeModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+  if (!open) return null;
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.95 }}
+        className="relative w-full max-w-md rounded-2xl border shadow-2xl overflow-hidden"
+        style={{ background: C.surface, borderColor: C.border }}
+      >
+        <div className="flex items-center justify-between px-5 py-4 border-b" style={{ borderColor: C.border }}>
+          <p className="font-bold text-sm" style={{ color: C.text }}>Ajouter un employé</p>
+          <button type="button" onClick={onClose} className="p-1 rounded-lg hover:bg-white/5 transition-colors" style={{ color: C.muted }}><X size={16} /></button>
+        </div>
+        <div className="p-5 space-y-4">
+          <div>
+            <label className="text-xs font-bold mb-1.5 block" style={{ color: C.dim }}>Nom complet</label>
+            <input type="text" className="w-full px-3 py-2.5 rounded-xl text-sm border outline-none transition-colors focus:border-white/20" style={{ background: "rgba(255,255,255,0.02)", borderColor: C.border, color: C.text }} placeholder="ex: Omar B." />
+          </div>
+          <div>
+            <label className="text-xs font-bold mb-1.5 block" style={{ color: C.dim }}>Matricule</label>
+            <input type="text" className="w-full px-3 py-2.5 rounded-xl text-sm border outline-none transition-colors focus:border-white/20" style={{ background: "rgba(255,255,255,0.02)", borderColor: C.border, color: C.text }} placeholder="ex: EMP-204" />
+          </div>
+          <div>
+            <label className="text-xs font-bold mb-1.5 block" style={{ color: C.dim }}>Département</label>
+            <input type="text" className="w-full px-3 py-2.5 rounded-xl text-sm border outline-none transition-colors focus:border-white/20" style={{ background: "rgba(255,255,255,0.02)", borderColor: C.border, color: C.text }} placeholder="ex: IT" />
+          </div>
+          <div>
+            <label className="text-xs font-bold mb-1.5 block" style={{ color: C.dim }}>Ligne de transport</label>
+            <select className="w-full px-3 py-2.5 rounded-xl text-sm border outline-none appearance-none" style={{ background: "rgba(255,255,255,0.02)", borderColor: C.border, color: C.text }}>
+              {companyLines.map(l => (
+                <option key={l.id} value={l.id} className="bg-gray-900">{l.name} - {l.from}</option>
+              ))}
+            </select>
+          </div>
+          <button type="button" onClick={onClose} className="w-full py-3 mt-2 rounded-xl text-sm font-bold text-white transition-all hover:opacity-90 active:scale-[0.98]" style={{ background: C.primary }}>
+            Confirmer l&apos;ajout
+          </button>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
 function EmployeesTab() {
   const [rows, setRows] = useState<CompanyEmployee[]>(() => companyEmployees.map(e => ({ ...e })));
   const [search, setSearch] = useState("");
@@ -466,15 +512,21 @@ function EmployeesTab() {
     }));
   };
 
+  const [showAddModal, setShowAddModal] = useState(false);
+
   return (
     <div className="space-y-4">
+      <AnimatePresence>
+        {showAddModal && <AddEmployeeModal open={showAddModal} onClose={() => setShowAddModal(false)} />}
+      </AnimatePresence>
+
       <div className="flex flex-wrap items-center gap-3">
         <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Rechercher employé, matricule…"
           className="flex-1 min-w-[200px] rounded-xl border px-4 py-2.5 text-sm outline-none" style={{ background: C.surface, borderColor: C.border, color: C.text }} />
         <button type="button" className="flex items-center gap-2 px-4 py-2.5 rounded-xl border text-sm font-bold" style={{ borderColor: C.border, color: C.dim }}>
           <Upload size={14} /> Import CSV
         </button>
-        <button type="button" className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold text-white" style={{ background: C.primary }}>
+        <button type="button" onClick={() => setShowAddModal(true)} className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold text-white transition-all hover:opacity-90 active:scale-95" style={{ background: C.primary }}>
           <Plus size={14} /> Ajouter employé
         </button>
       </div>

@@ -877,9 +877,59 @@ function IncidentsTab() {
 
 // ─── Corporate Tab ────────────────────────────────────────────────────────────
 
+function AddClientModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+  if (!open) return null;
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.95 }}
+        className="relative w-full max-w-md rounded-2xl border shadow-2xl overflow-hidden"
+        style={{ background: C.surface, borderColor: C.border }}
+      >
+        <div className="flex items-center justify-between px-5 py-4 border-b" style={{ borderColor: C.border }}>
+          <p className="font-bold text-sm" style={{ color: C.text }}>Nouveau Client</p>
+          <button type="button" onClick={onClose} className="p-1 rounded-lg hover:bg-white/5 transition-colors" style={{ color: C.muted }}><X size={16} /></button>
+        </div>
+        <div className="p-5 space-y-4">
+          <div>
+            <label className="text-xs font-bold mb-1.5 block" style={{ color: C.dim }}>Nom de l&apos;entreprise</label>
+            <input type="text" className="w-full px-3 py-2.5 rounded-xl text-sm border outline-none transition-colors focus:border-white/20" style={{ background: "rgba(255,255,255,0.02)", borderColor: C.border, color: C.text }} placeholder="ex: Djezzy" />
+          </div>
+          <div>
+            <label className="text-xs font-bold mb-1.5 block" style={{ color: C.dim }}>Secteur</label>
+            <input type="text" className="w-full px-3 py-2.5 rounded-xl text-sm border outline-none transition-colors focus:border-white/20" style={{ background: "rgba(255,255,255,0.02)", borderColor: C.border, color: C.text }} placeholder="ex: Énergie" />
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="text-xs font-bold mb-1.5 block" style={{ color: C.dim }}>Employés (estimé)</label>
+              <input type="number" className="w-full px-3 py-2.5 rounded-xl text-sm border outline-none transition-colors focus:border-white/20" style={{ background: "rgba(255,255,255,0.02)", borderColor: C.border, color: C.text }} placeholder="ex: 500" />
+            </div>
+            <div>
+              <label className="text-xs font-bold mb-1.5 block" style={{ color: C.dim }}>Plan choisi</label>
+              <select className="w-full px-3 py-2.5 rounded-xl text-sm border outline-none appearance-none" style={{ background: "rgba(255,255,255,0.02)", borderColor: C.border, color: C.text }}>
+                <option value="Enterprise+" className="bg-gray-900">Enterprise+</option>
+                <option value="Enterprise" className="bg-gray-900">Enterprise</option>
+                <option value="Business" className="bg-gray-900">Business</option>
+                <option value="Standard" className="bg-gray-900">Standard</option>
+              </select>
+            </div>
+          </div>
+          <button type="button" onClick={onClose} className="w-full py-3 mt-2 rounded-xl text-sm font-bold text-white transition-all hover:opacity-90 active:scale-[0.98] gradient-primary" style={{ border: "none" }}>
+            Créer le client
+          </button>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
 function CorporateTab() {
   const totalRevenue = useCountUp(corporateClients.reduce((a, c) => a + c.revenue, 0));
   const totalEmployees = useCountUp(corporateClients.reduce((a, c) => a + c.employees, 0));
+  const [showAddClient, setShowAddClient] = useState(false);
 
   const planColor: Record<string, { text: string; bg: string }> = {
     "Enterprise+": { text: "#facc15", bg: "rgba(250,204,21,0.15)" },
@@ -890,6 +940,10 @@ function CorporateTab() {
 
   return (
     <div className="space-y-4">
+      <AnimatePresence>
+        {showAddClient && <AddClientModal open={showAddClient} onClose={() => setShowAddClient(false)} />}
+      </AnimatePresence>
+
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
@@ -907,7 +961,7 @@ function CorporateTab() {
 
       {/* Add Client */}
       <div className="flex justify-end">
-        <button type="button" className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold gradient-primary text-white">
+        <button type="button" onClick={() => setShowAddClient(true)} className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold gradient-primary text-white transition-all hover:opacity-90 active:scale-95">
           <Plus size={14} /> Nouveau Client
         </button>
       </div>
