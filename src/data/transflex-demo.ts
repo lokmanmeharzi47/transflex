@@ -333,12 +333,12 @@ export const companyProfile = {
   email: "transport@entreprise.dz",
   plan: "Enterprise+",
   color: "#a78bfa",
-  enrolled: 318,
-  activeToday: 254,
-  tripsThisMonth: 5840,
+  enrolled: 18,
+  activeToday: 14,
+  tripsThisMonth: 320,
   occupancyRate: 86,
   punctuality: 94.2,
-  co2SavedKg: 12480,
+  co2SavedKg: 1450,
   costPerEmployee: 4200,
 };
 
@@ -352,10 +352,10 @@ export const companyFleetVehicles: FleetVehicle[] = [
 ];
 
 export const companyLines: CompanyLine[] = [
-  { id: "L-12", name: "Navette L-12 · Centre", from: "Bab El Oued",  to: "Bab Ezzouar",  capacity: 32, occupancy: 28, enrolled: 96, punctuality: 95 },
-  { id: "L-08", name: "Navette L-08 · Sud",    from: "Hydra",        to: "Bab Ezzouar",  capacity: 32, occupancy: 24, enrolled: 84, punctuality: 92 },
-  { id: "L-05", name: "Navette L-05 · Est",    from: "Hussein Dey",  to: "Bab Ezzouar",  capacity: 16, occupancy: 11, enrolled: 58, punctuality: 97 },
-  { id: "L-03", name: "Navette L-03 · Ouest",  from: "Chéraga",      to: "Bab Ezzouar",  capacity: 16, occupancy: 14, enrolled: 80, punctuality: 90 },
+  { id: "L-12", name: "Navette L-12 · Centre", from: "Bab El Oued",  to: "Bab Ezzouar",  capacity: 16, occupancy: 6, enrolled: 8, punctuality: 95 },
+  { id: "L-08", name: "Navette L-08 · Sud",    from: "Hydra",        to: "Bab Ezzouar",  capacity: 16, occupancy: 5, enrolled: 6, punctuality: 92 },
+  { id: "L-05", name: "Navette L-05 · Est",    from: "Hussein Dey",  to: "Bab Ezzouar",  capacity: 8, occupancy: 2, enrolled: 2, punctuality: 97 },
+  { id: "L-03", name: "Navette L-03 · Ouest",  from: "Chéraga",      to: "Bab Ezzouar",  capacity: 8, occupancy: 1, enrolled: 2, punctuality: 90 },
 ];
 
 export const companyEmployees: CompanyEmployee[] = [
@@ -378,36 +378,36 @@ export const companyChangeRequests: CompanyChangeRequest[] = [
 ];
 
 export const companyInvoices: CompanyInvoice[] = [
-  { ref: "FACT-2026-06", period: "Juin 2026",     employees: 318, total: 1335600, status: "pending" },
-  { ref: "FACT-2026-05", period: "Mai 2026",      employees: 312, total: 1310400, status: "paid"    },
-  { ref: "FACT-2026-04", period: "Avril 2026",    employees: 305, total: 1281000, status: "paid"    },
-  { ref: "FACT-2026-03", period: "Mars 2026",     employees: 298, total: 1251600, status: "paid"    },
+  { ref: "FACT-2026-06", period: "Juin 2026",     employees: 18, total: 75600, status: "pending" },
+  { ref: "FACT-2026-05", period: "Mai 2026",      employees: 17, total: 71400, status: "paid"    },
+  { ref: "FACT-2026-04", period: "Avril 2026",    employees: 16, total: 67200, status: "paid"    },
+  { ref: "FACT-2026-03", period: "Mars 2026",     employees: 16, total: 67200, status: "paid"    },
 ];
 
 export const companyUsageDaily: CompanyUsagePoint[] = [
-  { label: "Lun", trips: 248, employees: 226 },
-  { label: "Mar", trips: 262, employees: 238 },
-  { label: "Mer", trips: 271, employees: 244 },
-  { label: "Jeu", trips: 256, employees: 231 },
-  { label: "Ven", trips: 198, employees: 182 },
-  { label: "Sam", trips: 84,  employees: 71  },
-  { label: "Dim", trips: 36,  employees: 30  },
+  { label: "Lun", trips: 15, employees: 14 },
+  { label: "Mar", trips: 16, employees: 15 },
+  { label: "Mer", trips: 17, employees: 16 },
+  { label: "Jeu", trips: 15, employees: 14 },
+  { label: "Ven", trips: 11, employees: 10 },
+  { label: "Sam", trips: 4,  employees: 4  },
+  { label: "Dim", trips: 2,  employees: 2  },
 ];
 
 export const companyUsageWeekly: CompanyUsagePoint[] = [
-  { label: "S-4", trips: 1280, employees: 248 },
-  { label: "S-3", trips: 1340, employees: 256 },
-  { label: "S-2", trips: 1410, employees: 261 },
-  { label: "S-1", trips: 1355, employees: 254 },
+  { label: "S-4", trips: 75, employees: 16 },
+  { label: "S-3", trips: 80, employees: 17 },
+  { label: "S-2", trips: 85, employees: 17 },
+  { label: "S-1", trips: 80, employees: 18 },
 ];
 
 export const companyUsageMonthly: CompanyUsagePoint[] = [
-  { label: "Jan", trips: 5120, employees: 282 },
-  { label: "Fév", trips: 5340, employees: 290 },
-  { label: "Mar", trips: 5610, employees: 298 },
-  { label: "Avr", trips: 5480, employees: 305 },
-  { label: "Mai", trips: 5720, employees: 312 },
-  { label: "Jun", trips: 5840, employees: 318 },
+  { label: "Jan", trips: 280, employees: 14 },
+  { label: "Fév", trips: 295, employees: 15 },
+  { label: "Mar", trips: 310, employees: 16 },
+  { label: "Avr", trips: 300, employees: 16 },
+  { label: "Mai", trips: 315, employees: 17 },
+  { label: "Jun", trips: 320, employees: 18 },
 ];
 
 export const companyNotifications: CompanyNotification[] = [
